@@ -1,8 +1,37 @@
 package com.homework.task1.polinom;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class MyPolynomial {
 
     private double[] coeffs;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        MyPolynomial that = (MyPolynomial) o;
+
+        return Arrays.equals(coeffs, that.coeffs);
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+
+        result = prime * result + Arrays.hashCode(coeffs);
+
+        return result;
+
+    }
 
     public MyPolynomial(double... coeffs) {
         this.coeffs = coeffs;

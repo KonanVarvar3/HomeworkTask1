@@ -1,11 +1,44 @@
 package com.homework.task1.employee;
 
+import java.util.Objects;
+
 public class Employee {
 
     private int id;
     private String firstName;
     private String lastName;
     private int salary;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Employee employee = (Employee) o;
+
+        return id == employee.id &&
+                salary == employee.salary &&
+                Objects.equals(firstName, employee.getFirstName()) &&
+                Objects.equals(lastName, employee.getLastName());
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+
+        result = prime * result + id;
+        result = prime * result + salary;
+        result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+        result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+
+        return result;
+    }
 
     public Employee(int id, String firstName, String lastName, int salary) {
         this.id = id;

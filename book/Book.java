@@ -1,11 +1,43 @@
 package com.homework.task1.book;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 public class Book {
 
     private String name;
     private Author[] authors;
     private double price;
     private int qty = 0;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()){
+            return false;
+        }
+        Book book = (Book) o;
+
+        return Double.compare(book.price, price) == 0 &&
+                qty == book.qty &&
+                Objects.equals(name, book.name) &&
+                Arrays.equals(authors, book.authors);
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+
+        result = (int) (prime * result + price);
+        result = prime * result + qty;
+        result = prime * result + ((name == null) ? 0 : name.hashCode());
+        result = prime * result + Arrays.hashCode(authors);
+
+        return result;
+    }
 
     public Book(String name, Author[] authors, double price) {
         this.name = name;
