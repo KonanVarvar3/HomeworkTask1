@@ -1,5 +1,8 @@
 package com.homework.task1.ball;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 public class Ball {
 
     private float x;
@@ -7,6 +10,37 @@ public class Ball {
     private int radius;
     private float xDelta;
     private float yDelta;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()){
+            return false;
+        }
+        Ball ball = (Ball) o;
+
+        return Float.compare(ball.x, x) == 0 &&
+                Float.compare(ball.y, y) == 0 &&
+                radius == ball.radius &&
+                Float.compare(ball.xDelta, xDelta) == 0 &&
+                Float.compare(ball.yDelta, yDelta) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+
+        result = (int) (prime * result + x);
+        result = (int) (prime * result + y);
+        result = prime * result + radius;
+        result = (int) (prime * result + xDelta);
+        result = (int) (prime * result + yDelta);
+
+        return result;
+    }
 
     public Ball(float x, float y, int radius, int speed, int direction) throws DirectionExeption {
         if (direction > 180 || direction < -180) {

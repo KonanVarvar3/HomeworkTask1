@@ -2,12 +2,44 @@ package com.homework.task1.ball;
 
 import com.homework.task1.ball.Ball;
 
+import java.util.Objects;
+
 public class Container {
 
     private int x1;
     private int x2;
     private int y1;
     private int y2;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o){
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Container container = (Container) o;
+
+        return x1 == container.x1 &&
+                x2 == container.x2 &&
+                y1 == container.y1 &&
+                y2 == container.y2;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+
+        result = prime * result + x1;
+        result = prime * result + x2;
+        result = prime * result + y1;
+        result = prime * result + y2;
+
+        return result;
+    }
 
     private int width;
     private int height;
